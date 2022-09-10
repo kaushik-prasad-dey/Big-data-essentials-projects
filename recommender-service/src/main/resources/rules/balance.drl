@@ -1,0 +1,15 @@
+package com.myorg.rbac 
+import com.myorg.model.User
+import com.myorg.model.Action
+import com.myorg.rbac.RBACValidator
+
+rule "only_users_with_certain_active_roles_can_perform_actions"
+  when
+  $action: Action()
+  $user: User(actions contains $action.roleName)
+  
+  then
+	  System.out.println("Action permitted");
+end
+
+
